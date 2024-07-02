@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ku">
+
+<head>
+    <title>وشەساز</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="بزانە کوردییەکەت چەند باشە لەڕێگەی ئەم یارییە">
+    <meta property="og:title" content="وشەساز">
+    <meta property="og:description" content="مەتەڵێکی زمانی کوردی کە بە هەڵهێنانی پیت بە پیت وشەی نهێنی دەدۆزیتەوە">
+    <meta property="og:image" content="img/4.png">
+    <meta property="og:url" content="https://kanabi.me/wishasaz/play.html">
+    <audio id="success-audio" src="audio/win.mp3"></audio>
+    <audio id="lose-audio" src="audio/lose.mp3"></audio>
+    <audio id="flip-audio" src="audio/flip.mp3"></audio>
+    <audio id="green-audio" src="audio/green.wav"></audio>
+    <audio id="again-audio" src="audio/palyagain.mp3"></audio>
+    <audio id="click-audio" src="audio/click.wav"></audio>
+    <audio id="button-audio" src="audio/butt.wav"></audio>
+    <audio id="tip-audio" src="audio/tip.mp3"></audio>
+    <audio id="notip-audio" src="audio/notip.mp3"></audio>
+    <link rel="manifest" href="manifest.json">
+    <audio id="background-music" src="audio/ambient.mp3" loop></audio>
+
+    <link rel="icon" href="img/tit.png" type="image/x-icon">
+
+
+</head>
+
+<body id="body" class="disabled-div">
+    <header class="header">
+        <div class="dropdown">
+            <span onclick="toggleDropdown(event)">&#9776;</span>
+            <div class="dropdown-content">
+                <button onclick="showAbout()">دەربارە</button>
+                <button onclick="showPopup()">یارمەتی</button>
+                <button onclick="showLevel()">ئاست</button>
+
+                <div class="keyswitch2">
+                    <h3 class="text">میوزیک</h3>
+                    <label class="switch2">
+                        <input class="toggle2" type="checkbox" id="toggleMusic" checked onchange="handleToggleChange('toggleMusic')">
+                        <span class="slider2"></span>
+                        <span class="card-side"></span>
+                    </label>
+
+                </div>
+                <div class="keyswitch2">
+                    <h3 class="text2">دەنگ</h3>
+                    <label class="switch2">
+                        <input class="toggle2" type="checkbox" id="toggleSfx" checked onchange="handleToggleChange('toggleSfx')">
+                        <span class="slider2"></span>
+                        <span class="card-side"></span>
+                    </label>
+
+                </div>
+
+            </div>
+        </div>
+
+        <h1 id="title">
+            <img src="img/logo.gif" alt="Logo">
+        </h1>
+    </header>
+
+    <div class="game">
+        <div class="popup">
+            <ul>
+                <h1>چۆنیه‌تی یاری کردن</h1>
+                <h2>وشە
+
+                    نهێنییەکە بدۆزەوە بە ٦ هەڵهێنان</h2>
+                <li>هەر هەڵهێنانێک پێویستە وشەیەکی ٥ پیتە بێت.</li>
+                <li>ڕەنگی وشەکان دەگؤڕیت بەپێی بوونی پیتەکان لە وشە نهێنییەکە</li>
+                <h3>نموونەکان:</h3>
+                <img src="img/1.png" alt="Image Description" class="img">
+                <li>لە وشەی "پشمین" پیتی "پ" پیتێکی ڕاستە و لە شوێنی ڕاستە</li>
+                <img src="img/2.png" alt="Image Description" class="img">
+                <li>لە وشەی "ئاشتی" پیتی "ا" لە وشەی نهێنیدا بوونی هەیە بەڵام شوێنی هەڵەیە</li>
+                <img src="img/3.png" alt="Image Description" class="img">
+                <li>هیچ کام لە پیتەکانی وشە نهێنییەکە لە وشەی "ئەژنۆ"دا نییە</li>
+
+                <button class="btn" type="button" onclick="hidePopup()">
+                    <p>دەسپێبکە</p>
+                    <div id="container-stars">
+                        <div id="stars"></div>
+                    </div>
+
+                    <div id="glow">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                </button>
+            </ul>
+        </div>
+
+
+        <div class="about">
+            <a onclick="hideAbout()" class="closebtn">&times;</a>
+            <p class="about-heading">یاری وشەساز</p>
+            <p>ئەم یاریە وەرگیراوە لە یاری بەناوبانگی "Wordle"، خراوەتە سەر زمانی شیرینی کوردی، بەرهەم هێنانی ئەم یارییە تەواو کارێکی ئاڵۆز بوو سەرەڕای سانایی بەرنامەسازییەکەی بەڵام سازکردنی فەرهەنگێکی کوردی پێنج وشەیی و کۆکردنەوەی زانیارییەکانی کاتێکی زۆری خایاند، لەبەر ئەوە لە ئەگەڕی هەبوونی هەر خەوشێک داوای لێبووردن دەکەین.</p>
+        </div>
+
+        <div class="level">
+            <a onclick="hideLevel()" class="closebtn">&times;</a>
+            <p class="level-heading">ئاستی یارییەکەت هەڵبژێرە</p>
+            <p class="">متمانەت بەخۆت هەیە ئاستی داهاتوو تاقی بکەیتەوە؟</p>
+            <div class="rating">
+                <input value="5" name="star-radio" id="star-1" type="radio">
+                <label for="star-1">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" pathLength="360"></path>
+                    </svg>
+                </label>
+                <input value="4" name="star-radio" id="star-2" type="radio">
+                <label for="star-2">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" pathLength="360"></path>
+                    </svg>
+                </label>
+                <input value="3" name="star-radio" id="star-3" type="radio">
+                <label for="star-3">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" pathLength="360"></path>
+                    </svg>
+                </label>
+                <input value="2" name="star-radio" id="star-4" type="radio">
+                <label for="star-4">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" pathLength="360"></path>
+                    </svg>
+                </label>
+                <input value="1" name="star-radio" id="star-5" type="radio" checked>
+                <label for="star-5">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" pathLength="360"></path>
+                    </svg>
+                </label>
+            </div>
+        </div>
+
+
+
+        <div class="tip" id="tip">
+            <span class="close" onclick="hideTip()">x</span>
+            <h2>وشەی نهێنی</h2>
+        </div>
+        <div class="tile"></div>
+        <div class="message"></div>
+        <div class="cont">
+            <button class="na1" id="bs" onclick="deleteLetter()">کشانەوە</button>
+            <button class="na3" id="en" onclick="showTip()">&#128161</button>
+            <button class="na2" id="en" onclick="checkRow()">بڕۆ</button>
+        </div>
+
+        <div class="control">
+
+        </div>
+
+
+        <div class="keyswitch">
+            <label class="switch2">
+                <input class="toggle2" type="checkbox" id="toggleButton" checked>
+                <span class="slider2"></span>
+                <span class="card-side"></span>
+            </label>
+            <h3 class="text">تەختەکلیلی سەر ڕوونما</h3>
+        </div>
+
+
+        <div class="visible-keyboard" id="key"></div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="script/app.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-PH6M2KB0F4"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-PH6M2KB0F4');
+        </script>
+
+</body>
+
+<footer>
+    <!-- //ALL RIGHTS RESERVED -->
+    <P style="color:rgb(110, 110, 110); font-size:12px; margin-top:20px;">© مافی بڵاوکردنەوەی ئەم بەرهەمە پارێزراوە بۆ <a href="https://kanabi.me" style="color:rgb(154, 149, 149)"> Mohammed Kanabi </a></p>>
+
+
+
+</footer>
+
+</html>
